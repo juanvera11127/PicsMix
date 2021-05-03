@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">PicsMix</string>
-    <string name="the_game">The Game</string>
     <string name="start">Start</string>
+    <string name="resume_game">Resume Game</string>
+    <string name="start_new_game">Start New Game</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="logoMain_description">Logo of App in MainActivity</string>
 </resources>
