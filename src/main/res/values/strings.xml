@@ -5,4 +5,5 @@
     <string name="start_new_game">Start New Game</string>
     <string name="how_to_play">How to Play</string>
     <string name="logoMain_description">Logo of App in MainActivity</string>
+    <string name="how_to_play_text">PicsMix is a fun party game to play with a group of friends. The gameplay is simple: one player draws something, the next player guesses what the drawing is, the 3rd player draws what the 2nd player guessed, and so on.</string>
 </resources>
