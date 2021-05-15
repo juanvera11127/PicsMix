@@ -30,10 +30,6 @@ class GameActivity : AppCompatActivity() {
         playerNum = Players.list.size
         count = 0
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
         setContentView(R.layout.activity_game)
         canvasView = findViewById<View>(R.id.canvas) as CanvasView
         doneButton = findViewById<View>(R.id.done_button) as Button

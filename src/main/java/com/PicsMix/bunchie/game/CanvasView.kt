@@ -2,11 +2,15 @@ package com.PicsMix.bunchie.game
 
 import android.content.Context
 import android.graphics.*
+import android.os.Build
+import android.os.Environment
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.view.drawToBitmap
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -23,11 +27,11 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
     private var hasStarted = false
     private val paths = ArrayList<Path>()
     private val colors = ArrayList<Int>()
-    private val cornflakes = ArrayList<Float>()
+    private val strokes = ArrayList<Float>()
     private var colorName: String
     private var n = 0
     private val SMALL = 6f
-    private val BIG = 12f
+    private val BIG = 15f
     private var f = 0f
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -39,28 +43,20 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
 
     fun saveCanvas() {
         if (GameActivity.isDrawing) {
-            this.isDrawingCacheEnabled = true
-            this.buildDrawingCache()
             setBackgroundColor(Color.WHITE)
-            mBitmap = Bitmap.createBitmap(this.drawingCache)
-            this.isDrawingCacheEnabled = false
+            mBitmap = Bitmap.createBitmap(this.drawToBitmap())
         } else {
             colorName = "black"
             val v1: EditText? = GameActivity.text
             if (v1 != null) {
-                v1.isDrawingCacheEnabled = true
-            }
-            if (v1 != null) {
                 v1.setBackgroundColor(Color.WHITE)
             }
             if (v1 != null) {
-                mBitmap = Bitmap.createBitmap(v1.drawingCache)
+                mBitmap = Bitmap.createBitmap(v1.drawToBitmap())
             }
-            if (v1 != null) {
-                v1.isDrawingCacheEnabled = false
-            }
+
         }
-        val file2 = File(Companion.filesDir, GameActivity.count.toString() + ".png")
+        val file2 = File(context.getExternalFilesDir(null), GameActivity.count.toString() + ".png")
         var fos: FileOutputStream?
         fos = null
         try {
@@ -97,7 +93,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
         super.onDraw(canvas)
         for (i in colors.indices) {
             mPaint.color = colors[i]
-            mPaint.strokeWidth = cornflakes[i]
+            mPaint.strokeWidth = strokes[i]
             mPath = paths[i]
             canvas.drawPath(mPath, mPaint)
         }
@@ -106,7 +102,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
     private fun StartTouch(x: Float, y: Float) {
         n = Color.parseColor(colorName)
         colors.add(n)
-        cornflakes.add(f)
+        strokes.add(f)
         mPath = Path()
         paths.add(mPath)
         mPath.moveTo(x, y)
@@ -129,10 +125,10 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
         mPath.reset()
         paths.clear()
         colors.clear()
-        cornflakes.clear()
+        strokes.clear()
         val n = Color.parseColor("black")
         colors.add(n)
-        cornflakes.add(SMALL)
+        strokes.add(SMALL)
         f = SMALL
         mPath = Path()
         paths.add(mPath)
@@ -143,7 +139,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
         if (paths.size > 1) {
             paths.removeAt(paths.size - 1)
             colors.removeAt(colors.size - 1)
-            cornflakes.removeAt(cornflakes.size - 1)
+            strokes.removeAt(strokes.size - 1)
             mPath = paths[colors.size - 1]
             invalidate()
         }
@@ -168,7 +164,6 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
     }
 
     companion object {
-        val filesDir: File? = null
         private const val TOLERANCE = 5f
         var folderNum = 0
         var color = 0
@@ -190,6 +185,6 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
         mPaint.strokeJoin = Paint.Join.ROUND
         mPaint.strokeWidth = SMALL
         f = SMALL
-        cornflakes.add(SMALL)
+        strokes.add(SMALL)
     }
 }
