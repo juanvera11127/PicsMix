@@ -24,5 +24,12 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this@MainActivity, HowToPlayActivity::class.java)
             startActivity(i)
         }
+
+        startNewGameButton.setOnClickListener {
+            val i = Intent(this@MainActivity, First::class.java)
+            startActivity(i)
+        }
+
+        resumeGameButton.visibility = View.INVISIBLE
     }
 }
