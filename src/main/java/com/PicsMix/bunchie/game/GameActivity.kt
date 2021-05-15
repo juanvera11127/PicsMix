@@ -3,14 +3,11 @@ package com.PicsMix.bunchie.game
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-
-const val TAG = "GAMEACTIVITY"
 
 class GameActivity : AppCompatActivity() {
     private var canvasView: CanvasView? = null
@@ -94,8 +91,6 @@ class GameActivity : AppCompatActivity() {
 
     fun saveCanvas(v: View?) {
         count++
-        Log.i(TAG, "count:" + count + " first turns:" + First.turns!!.toInt())
-
         if (count <= First.turns!!.toInt()) {
             canvasView?.saveCanvas()
         }
