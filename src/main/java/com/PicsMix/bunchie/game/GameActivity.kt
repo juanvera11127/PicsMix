@@ -34,14 +34,28 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
         canvasView = findViewById<View>(R.id.canvas) as CanvasView
         doneButton = findViewById<View>(R.id.done_button) as Button
+        doneButton!!.setOnClickListener { saveCanvas(canvasView) }
         undoButton = findViewById<View>(R.id.undo_button) as Button
+        undoButton!!.setOnClickListener { undo() }
         text = findViewById<View>(R.id.editText3) as EditText
         r = findViewById<View>(R.id.radioGroup) as RadioGroup
         rg = findViewById<View>(R.id.radioGroup2) as RadioGroup
         r1 = findViewById<View>(R.id.toggle_green) as RadioButton
         r2 = findViewById<View>(R.id.toggle_blue) as RadioButton
+        r2!!.setOnClickListener {
+            val s = "blue"
+            changeColor(s)
+        }
         r3 = findViewById<View>(R.id.toggle_red) as RadioButton
+        r3!!.setOnClickListener {
+            val s = "red"
+            changeColor(s)
+        }
         r4 = findViewById<View>(R.id.toggle_black) as RadioButton
+        r4!!.setOnClickListener {
+            val s = "black"
+            changeColor(s)
+        }
         r5 = findViewById<View>(R.id.radio5) as RadioButton
         r5!!.setOnClickListener {
             val s = "small"
@@ -112,8 +126,8 @@ class GameActivity : AppCompatActivity() {
             undoButton!!.isEnabled = false
         }
         if (count > First.turns!!.toInt()) {
-            val intent = Intent(applicationContext, First::class.java)
-            startActivity(intent)
+            val i = Intent(this@GameActivity, First::class.java)
+            startActivity(i)
         }
     }
 
@@ -127,7 +141,7 @@ class GameActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun undo(v: View?) {
+    fun undo() {
         canvasView?.undo()
     }
 
