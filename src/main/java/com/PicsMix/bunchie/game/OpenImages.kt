@@ -62,7 +62,7 @@ class OpenImages : AppCompatActivity() {
     }
 
     protected fun show() {
-        val imgFile = File(CanvasView.context.filesDir, "$count.png")
+        val imgFile = File(CanvasView.filesDir, "$count.png")
         val myBitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
         img!!.setImageBitmap(myBitmap)
         turn!!.text = "Turn: $count"
@@ -94,7 +94,7 @@ class OpenImages : AppCompatActivity() {
         try {
             for (i in 1..CanvasView.pics.size) {
                 val source =
-                    FileInputStream(CanvasView.context.filesDir.toString() + "/" + i + ".png").channel
+                    FileInputStream(CanvasView.filesDir.toString() + "/" + i + ".png").channel
                 val destination = FileOutputStream(Dir.toString() + "/" + i + ".png").channel
                 destination.transferFrom(source, 0, source.size())
             }

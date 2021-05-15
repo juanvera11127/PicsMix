@@ -15,7 +15,7 @@ class Players : ListActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_players)
-        val btn = findViewById<View>(R.id.btnAdd) as Button
+        val add = findViewById<View>(R.id.btnAdd) as Button
         val undo = findViewById<View>(R.id.button3) as Button
         val done = findViewById<View>(R.id.startButton) as Button
         done.setOnClickListener {
@@ -45,7 +45,7 @@ class Players : ListActivity() {
                 adapter!!.notifyDataSetChanged()
             }
         }
-        btn.setOnClickListener(listener)
+        add.setOnClickListener(listener)
         listAdapter = adapter
     }
 

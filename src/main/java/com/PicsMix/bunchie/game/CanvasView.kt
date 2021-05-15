@@ -60,7 +60,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
                 v1.isDrawingCacheEnabled = false
             }
         }
-        val file2 = File(Companion.context.filesDir, GameActivity.count.toString() + ".png")
+        val file2 = File(Companion.filesDir, GameActivity.count.toString() + ".png")
         var fos: FileOutputStream?
         fos = null
         try {
@@ -71,7 +71,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
             fos.flush()
             fos.close()
         } catch (e: IOException) {
-            Toast.makeText(Companion.context, "epic fail: " + e.message, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "epic fail: " + e.message, Toast.LENGTH_LONG).show()
             e.printStackTrace()
         } finally {
             if (fos != null) {
@@ -168,8 +168,8 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
     }
 
     companion object {
+        val filesDir: File? = null
         private const val TOLERANCE = 5f
-        lateinit var context: Context
         var folderNum = 0
         var color = 0
         var pics = ArrayList<File>()
