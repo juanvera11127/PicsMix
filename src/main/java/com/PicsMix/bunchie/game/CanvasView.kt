@@ -29,6 +29,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
     private val SMALL = 6f
     private val BIG = 12f
     private var f = 0f
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
@@ -84,7 +85,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
         }
     }
 
-    protected fun changeColor(c: String) {
+    fun changeColor(c: String) {
         colorName = c
     }
 

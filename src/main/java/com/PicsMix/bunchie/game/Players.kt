@@ -20,8 +20,8 @@ class Players : ListActivity() {
         val done = findViewById<View>(R.id.startButton) as Button
         done.setOnClickListener {
             if (!list.isEmpty()) {
-                val intent = Intent(applicationContext, GameActivity::class.java)
-                startActivity(intent)
+                val i = Intent(this@Players, GameActivity::class.java)
+                startActivity(i)
             } else {
                 Toast.makeText(applicationContext, "Name List cannot be empty", Toast.LENGTH_SHORT)
                     .show()

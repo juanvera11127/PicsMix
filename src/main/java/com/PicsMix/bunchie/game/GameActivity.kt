@@ -31,7 +31,7 @@ class GameActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_game)
         canvasView = findViewById<View>(R.id.canvas) as CanvasView
         doneButton = findViewById<View>(R.id.done_button) as Button
         undoButton = findViewById<View>(R.id.undo_button) as Button
@@ -59,6 +59,10 @@ class GameActivity : AppCompatActivity() {
         text!!.isEnabled = false
         openDialog()
         CanvasView.pics.clear()
+    }
+
+    private fun changeColor(s: String) {
+        canvasView!!.changeColor(s)
     }
 
     private fun changeSize(s: String) {
