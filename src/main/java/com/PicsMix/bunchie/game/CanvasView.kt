@@ -56,7 +56,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
             }
 
         }
-        val file2 = File(context.getExternalFilesDir(null), GameActivity.count.toString() + ".png")
+        val file2 = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), GameActivity.count.toString() + ".png")
         var fos: FileOutputStream?
         fos = null
         try {
@@ -67,7 +67,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) :
             fos.flush()
             fos.close()
         } catch (e: IOException) {
-            Toast.makeText(context, "epic fail: " + e.message, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "fail: " + e.message, Toast.LENGTH_LONG).show()
             e.printStackTrace()
         } finally {
             if (fos != null) {
