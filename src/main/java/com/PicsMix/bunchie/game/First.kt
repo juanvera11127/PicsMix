@@ -37,7 +37,6 @@ class First : AppCompatActivity() {
                 startAct()
             }
         }
-        applicationContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.deleteRecursively()
     }
 
     fun reqPermission() {
